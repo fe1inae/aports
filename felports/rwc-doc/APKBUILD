@@ -1,0 +1,23 @@
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=rwc-doc
+pkgver=0.2
+pkgrel=0
+pkgdesc="list files, recursively"
+url="https://github.com/leahneukirchen/rwc"
+arch="all"
+license="MIT"
+source="$pkgname-v$pkgver.tar.gz::https://github.com/leahneukirchen/rwc/archive/refs/tags/v$pkgver.tar.gz"
+builddir="$srcdir/${pkgname%%-doc}-$pkgver"
+options="!check"
+
+build() {
+    gzip rwc.1
+}
+
+package() {
+    mkdir -p "$pkgdir/usr/share/man/man1"
+	install -Dm644 rwc.1.gz "$pkgdir/usr/share/man/man1"
+}
+sha512sums="
+99591516b42e3e1ceb96ffc0ce2917e617a7c03438ca4e1aa3129b98dc37d93ad0623a731632c24c854918c075f04f8e5678e8c63848d5eaec3e6ae1b7f3eb5f  rwc-doc-v0.2.tar.gz
+"
