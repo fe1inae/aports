@@ -1,0 +1,26 @@
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=rssfs
+pkgver=0_git20210526
+pkgrel=0
+_commit=6252ace37de8b85efa6c9ac7d4b91a9568d5bc28
+pkgdesc="The RSS file system"
+url="https://github.com/dertuxmalwieder/rssfs"
+arch="all"
+license="MIT-0"
+makedepends="go"
+source="$pkgname-$pkgver.tar.gz::https://github.com/dertuxmalwieder/rssfs/archive/$_commit.tar.gz"
+builddir="$srcdir/$pkgname-$_commit"
+options="!check"
+
+build() {
+    go build
+}
+
+package() {
+    mkdir -p "$pkgdir/usr/bin"
+    install -Dm755 rssfs "$pkgdir/usr/bin"
+}
+
+sha512sums="
+4bea7485740c7e23f8df6295497c3d8b50ab3c089d57bb0f8ff61812601c5cbe10e60a41044112ac094fdf94639ffc6fa4eebaa7029a62370f78f7b10998f83e  rssfs-0_git20210526.tar.gz
+"

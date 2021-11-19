@@ -1,0 +1,36 @@
+# Contributor: Elaina Thompson <felinae@ulthar.cat>
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=lite
+pkgver=1.11
+pkgrel=0
+pkgdesc='A lightweight text editor written in Lua'
+url="https://github.com/rxi/$pkgname"
+license="MIT"
+arch="x86_64"
+depends="sdl2"
+source="$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz
+	lite-path-fix.patch"
+builddir="$srcdir/$pkgname-$pkgver"
+options="!check"
+
+prepare() {
+    patch -p1 < "$srcdir/lite-path-fix.patch"
+    sed -i -e '/^cflags=/s/"/"$CFLAGS /' \
+           -e '/^lflags=/s/"/"$LDFLAGS /' build.sh
+}
+
+build() {
+    ./build.sh
+}
+
+package() {
+    mkdir -p "$pkgdir/usr/bin"
+    install -Dm755 lite "$pkgdir/usr/bin/"
+    mkdir -p "$pkgdir/usr/share/lite"
+    cp -a data/* "$pkgdir/usr/share/lite/"
+}
+
+sha512sums="
+2fe3a651cc3ddedd67d8b8f2b53b262eed8a64295d65d31b17ff80f787cfe53fd82c8e69aaaada7806c08f9814eb4a576668dc5614de43ddf2caa6d5aae338f0  lite-1.11.tar.gz
+e3a220298fdf5db022249b4086c825ec01ff89ae6a8930d5ace1c2c6db7239c68c1adc674c5c78e33dc8d39139437d2f23dcb6b9fbe3ab4b81d5282ebb8ffda0  lite-path-fix.patch
+"

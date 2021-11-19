@@ -1,0 +1,25 @@
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=nq
+pkgver=0.4
+pkgrel=0
+pkgdesc=" Unix command line queue utility "
+url="https://github.com/leahneukirchen/nq"
+arch="all"
+license="CC0"
+source="$pkgname-v$pkgver.tar.gz::https://github.com/leahneukirchen/nq/archive/refs/tags/v$pkgver.tar.gz"
+builddir="$srcdir/$pkgname-$pkgver"
+options="!check"
+
+build() {
+    make
+}
+
+package() {
+    mkdir -p "$pkgdir/usr/bin"
+	install -Dm755 nq "$pkgdir/usr/bin"
+	install -Dm755 fq "$pkgdir/usr/bin"
+	install -Dm755 tq "$pkgdir/usr/bin"
+}
+sha512sums="
+c4587c2074dd6e3d18d56a273b943b2594f6ea73912d774120706dbcb6a64e0b7a99c4da7283cbe0d3d47eb24fa246625e9180a88ee2e0cacc647de8c8606c38  nq-v0.4.tar.gz
+"

@@ -1,0 +1,23 @@
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=lr
+pkgver=1.5.1
+pkgrel=0
+pkgdesc="list files, recursively"
+url="https://github.com/leahneukirchen/lr"
+arch="all"
+license="MIT"
+source="$pkgname-v$pkgver.tar.gz::https://github.com/leahneukirchen/lr/archive/refs/tags/v$pkgver.tar.gz"
+builddir="$srcdir/$pkgname-$pkgver"
+options="!check"
+
+build() {
+    make
+}
+
+package() {
+    mkdir -p "$pkgdir/usr/bin"
+	install -Dm755 lr "$pkgdir/usr/bin"
+}
+sha512sums="
+c55f3bb11327c9624401dc7d54deacbbe9c7fb93dcc9e4afdbf1a79678779a3c7056a51c52a145a965a91a8aa39a2c49b5606e9a20d5bfd9ee48c760976bdedc  lr-v1.5.1.tar.gz
+"

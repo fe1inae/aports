@@ -1,0 +1,28 @@
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=fenneljit
+pkgver=1.0.0
+pkgrel=0
+pkgdesc="fennel but luajit"
+url="https://git.sr.ht/~technomancy/fennel"
+arch="all"
+license="MIT"
+source="$pkgver.tar.gz::https://git.sr.ht/~technomancy/fennel/archive/$pkgver.tar.gz"
+builddir="$srcdir/fennel-$pkgver"
+options="!check"
+
+check() {
+    true
+}
+
+build() {
+    make LUA=luajit
+}
+
+package() {
+    mkdir -p "$pkgdir/usr/bin"
+	install -Dm755 fennel "$pkgdir/usr/bin"
+	install -Dm755 fennel "$pkgdir/usr/share/lua/lua5.1"
+}
+sha512sums="
+4ad1635807d244297fdc7bf7c06568ae708ae805dcaac2bb190fad412da21c9e3c3b86a6afa223e343488c725afea94682f213332fb22ba66eb5190e97f18415  1.0.0.tar.gz
+"
