@@ -11,19 +11,19 @@ SRC=\
 	main/xe      \
 	main/xe-doc 
 
-DIR=$(XDG_DATA_HOME)/apk
+DIR?=$(XDG_DATA_HOME)/apk
+
+ARCH=x86_64
 
 # RULES
 # -----
 
 all: $(SRC)
 
-packages:
-	mkdir -p packages/felports/x86_64
-
 $(SRC): FRC
-	@mkdir -p $(DIR)/$(@D)
-	@cd $(@)                  \
+	@mkdir -p $(DIR)/$(@D)/$(ARCH)
+	@set -x && \
+		cd $(@)                  \
 		&& abuild sanitycheck \
 		&& abuild             \
 			-r                \
@@ -32,11 +32,11 @@ $(SRC): FRC
 # MISC
 # ----
 
-SYNC:
-	git pull --force
+sync:
+	git pull
 	$(MAKE)
 
-.PHONY: all FRC SERV
+.PHONY: all sync FRC
 
 FRC:
 
