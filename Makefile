@@ -1,24 +1,42 @@
 # VARIABLES
 # ---------
 
-SRC=$(wildcard felports/*)
+SRC=\
+	main/lr      \
+	main/lr-doc  \
+	main/nq      \
+	main/nq-doc  \
+	main/rwc     \
+	main/rwc-doc \
+	main/xe      \
+	main/xe-doc 
 
-DIR=$(realpath packages)
+DIR=$(XDG_DATA_HOME)/apk
 
 # RULES
 # -----
 
 all: $(SRC)
 
-felports/%: FRC
-	@cd $(@) \
-		&& abuild \
-			-P $(DIR) \
-			index
+packages:
+	mkdir -p packages/felports/x86_64
+
+$(SRC): FRC
+	@mkdir -p $(DIR)/$(@D)
+	@cd $(@)                  \
+		&& abuild sanitycheck \
+		&& abuild             \
+			-r                \
+			-P $(DIR)
 
 # MISC
 # ----
-.PHONY: all FRC
+
+SYNC:
+	git pull --force
+	$(MAKE)
+
+.PHONY: all FRC SERV
 
 FRC:
 
