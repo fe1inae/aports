@@ -23,7 +23,7 @@ all: $(SRC)
 $(SRC): FRC
 	@mkdir -p $(DIR)/$(@D)/$(ARCH)
 	@set -x && \
-		cd $(@)                  \
+		cd $(@)               \
 		&& abuild sanitycheck \
 		&& abuild             \
 			-r                \
