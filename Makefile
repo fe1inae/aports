@@ -9,7 +9,8 @@ SRC=\
 	main/rwc     \
 	main/rwc-doc \
 	main/xe      \
-	main/xe-doc 
+	main/xe-doc  \
+	main/gmnigit 
 
 DIR?=$(XDG_DATA_HOME)/apk
 
