@@ -26,6 +26,7 @@ check() {
 
 package() {
     mkdir -p "$pkgdir/usr/bin"
+	install -Dm755 $pkgname "$pkgdir/usr/bin"
 }
 
 sha512sums="
