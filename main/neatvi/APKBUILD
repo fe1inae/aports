@@ -1,0 +1,23 @@
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=neatvi
+pkgver=10
+pkgrel=0
+pkgdesc="A small vi/ex editor for editing bidirectional UTF-8 text"
+url="https://github.com/aligrudi/neatvi"
+arch="all"
+license="MIT"
+source="$pkgname-$pkgver.tar.gz::https://github.com/aligrudi/neatvi/archive/refs/tags/$pkgver.tar.gz"
+builddir="$srcdir/$pkgname-$pkgver"
+options="!check"
+
+build() {
+	make
+}
+
+package() {
+	mkdir -p "$pkgdir/usr/bin"
+	install -Dm755 vi "$pkgdir/usr/bin/nvi" 
+}
+sha512sums="
+80282e1bbdc3b4aeb62faf9d094175ace8a909bb036d075ed821b018c950e653ef49ab98c0ace77f5e5f1f10fc9d32a42152279abf635f0e639a4695ee907d5e  neatvi-10.tar.gz
+"
