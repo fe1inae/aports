@@ -1,7 +1,7 @@
 # VARIABLES
 # ---------
 
-SRC=\
+SRC=             \
 	main/lr      \
 	main/lr-doc  \
 	main/nq      \
@@ -12,7 +12,7 @@ SRC=\
 	main/xe-doc  \
 	main/gmnigit 
 
-DIR?=$(XDG_DATA_HOME)/apk
+DIR:=$(PWD)/apk
 
 ARCH=x86_64
 
@@ -23,11 +23,14 @@ all: $(SRC)
 
 $(SRC): FRC
 	@mkdir -p $(DIR)/$(@D)/$(ARCH)
+	@mkdir -p $(@)/main
+	@cp repos $(@)/main/.rootbld-repositories
 	@cd $(@)                  \
 		&& abuild sanitycheck \
 		&& abuild             \
-			-r                \
-			-P $(DIR)
+			-P $(DIR)         \
+			rootbld
+	@rm -rf $(@)/main
 
 # MISC
 # ----
