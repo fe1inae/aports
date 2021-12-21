@@ -1,0 +1,25 @@
+From eb63ddb07b6fd2a64bf4fc47551e76de576c11f4 Mon Sep 17 00:00:00 2001
+From: Elaina Thompson <felinae@ulthar.cat>
+Date: Tue, 21 Dec 2021 13:46:54 -0800
+Subject: [PATCH] close paragraph
+
+---
+ main.go | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/main.go b/main.go
+index c96b8a1..d5b044d 100644
+--- a/main.go
++++ b/main.go
+@@ -183,7 +183,7 @@ var gemtextPage = template.Must(template.
+ 
+ 	{{- with . | text }}
+ 	{{- $isList = false }}
+-	<p>{{.}}
++	<p>{{.}}</p>
+ 	{{- end -}}
+ 
+ 	{{- with . | li }}
+-- 
+2.34.1
+

@@ -7,8 +7,9 @@ pkgdesc=" HTTP to Gemini proxy designed to provide service for a single domain"
 url="https://git.sr.ht/~sircmpwn/kineto"
 license="MIT"
 arch="all"
-makedepends="go"
-source="$pkgname-$pkgver.tar.gz::https://git.sr.ht/~sircmpwn/kineto/archive/$_commit.tar.gz"
+makedepends="go patch"
+source="$pkgname-$pkgver.tar.gz::https://git.sr.ht/~sircmpwn/kineto/archive/$_commit.tar.gz
+0001-close-paragraph.patch"
 builddir="$srcdir/$pkgname-$_commit"
 options="!check chmod-clean net"
 
@@ -26,4 +27,5 @@ package() {
 }
 sha512sums="
 dd79742be233dea3fb1f21a98cbb12d761760bad4ef469ca90bb991c115fbd4e8b69a620d589b3c3e08ff60035830465a68226159b58e6719c9a40e33756fea1  kineto-0_git20211104.tar.gz
+4faff99adbe253cd7389dfe75fe1803b1a6d458df4c3394b31c9b6b8415b34f1d85c7a3bae7c1d445a3b641d1753db4ba3e5f953bb82372954070e5e74c81dc1  0001-close-paragraph.patch
 "
