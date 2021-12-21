@@ -17,15 +17,15 @@ export GOCACHE="$srcdir"
 export GOTMPDIR="$srcdir"
 
 build() {
-    go build -v -o $pkgname
+	go build -v -o $pkgname
 }
 
 check() {
-    go test .
+	go test .
 }
 
 package() {
-    mkdir -p "$pkgdir/usr/bin"
+	mkdir -p "$pkgdir/usr/bin"
 	install -Dm755 $pkgname "$pkgdir/usr/bin"
 }
 

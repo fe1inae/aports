@@ -13,14 +13,14 @@ builddir="$srcdir/$pkgname-$pkgver"
 options="!check"
 
 build() {
-    ./configure
-    make
-    gzip telescope.1
+	./configure
+	make
+	gzip telescope.1
 }
 
 package() {
-    mkdir -p "$pkgdir/usr/bin"
-    mkdir -p "$pkgdir/usr/share/man/man1"
+	mkdir -p "$pkgdir/usr/bin"
+	mkdir -p "$pkgdir/usr/share/man/man1"
 	install -Dm755 telescope "$pkgdir/usr/bin"
 	install -Dm644 telescope.1.gz "$pkgdir/usr/share/man/man1"
 }

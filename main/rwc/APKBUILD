@@ -11,11 +11,15 @@ builddir="$srcdir/$pkgname-$pkgver"
 options="!check"
 
 build() {
-    make
+	make
+	gzip rwc.1
 }
 
 package() {
-    mkdir -p "$pkgdir/usr/bin"
+	mkdir -p "$pkgdir/usr/bin"
+	mkdir -p "$pkgdir/usr/share/man/man1"
+
+	install -Dm644 rwc.1.gz "$pkgdir/usr/share/man/man1"
 	install -Dm755 rwc "$pkgdir/usr/bin"
 }
 sha512sums="

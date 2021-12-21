@@ -6,17 +6,21 @@ pkgdesc="list files, recursively"
 url="https://github.com/leahneukirchen/xe"
 arch="all"
 license="MIT"
+subprojects="$pkgname-doc"
 source="$pkgname-v$pkgver.tar.gz::https://github.com/leahneukirchen/xe/archive/refs/tags/v$pkgver.tar.gz"
 builddir="$srcdir/$pkgname-$pkgver"
 options="!check"
 
 build() {
-    make
+	make
+	gzip xe.1
 }
 
 package() {
-    mkdir -p "$pkgdir/usr/bin"
+	mkdir -p "$pkgdir/usr/bin"
+	mkdir -p "$pkgdir/usr/share/man/man1"
 	install -Dm755 xe "$pkgdir/usr/bin"
+	install -Dm644 xe.1.gz "$pkgdir/usr/share/man/man1"
 }
 sha512sums="
 848b35f31e480f386cc48feaca60d59159eaaca95213039d5474c26e5d0c87092905029f32770c3b356d29822027cee9fc14b46e0127754ce2135cb825928bf6  xe-v0.11.tar.gz
