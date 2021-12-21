@@ -10,7 +10,8 @@ SRC=             \
 	main/rwc-doc \
 	main/xe      \
 	main/xe-doc  \
-	main/gmnigit 
+	main/gmnigit \
+	main/kineto 
 
 DIR:=$(PWD)/apk
 

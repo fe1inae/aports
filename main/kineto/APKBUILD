@@ -1,0 +1,29 @@
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=kineto
+pkgver=0_git20211104
+_commit=857f8c97ebc5724f4c34931ba497425e7653894e
+pkgrel=0
+pkgdesc=" HTTP to Gemini proxy designed to provide service for a single domain"
+url="https://git.sr.ht/~sircmpwn/kineto"
+license="MIT"
+arch="all"
+makedepends="go"
+source="$pkgname-$pkgver.tar.gz::https://git.sr.ht/~sircmpwn/kineto/archive/$_commit.tar.gz"
+builddir="$srcdir/$pkgname-$_commit"
+options="!check chmod-clean net"
+
+export GOPATH="$srcdir"
+export GOCACHE="$srcdir"
+export GOTMPDIR="$srcdir"
+
+build() {
+    go build -v -o $pkgname
+}
+
+package() {
+    mkdir -p "$pkgdir/usr/bin"
+	install -Dm755 "$pkgname" "$pkgdir/usr/bin"
+}
+sha512sums="
+dd79742be233dea3fb1f21a98cbb12d761760bad4ef469ca90bb991c115fbd4e8b69a620d589b3c3e08ff60035830465a68226159b58e6719c9a40e33756fea1  kineto-0_git20211104.tar.gz
+"
