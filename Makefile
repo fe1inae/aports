@@ -1,17 +1,18 @@
 # VARIABLES
 # ---------
 
-SRC=             \
-	main/lr      \
-	main/lr-doc  \
-	main/nq      \
-	main/nq-doc  \
-	main/rwc     \
-	main/rwc-doc \
-	main/xe      \
-	main/xe-doc  \
-	main/gmnigit \
-	main/kineto 
+SRC=               \
+	main/lr        \
+	main/lr-doc    \
+	main/nq        \
+	main/nq-doc    \
+	main/rwc       \
+	main/rwc-doc   \
+	main/xe        \
+	main/xe-doc    \
+	main/gmnigit   \
+	main/kineto    \
+	main/telescope
 
 DIR:=$(PWD)/apk
 
