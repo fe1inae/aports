@@ -34,8 +34,8 @@ package() {
 
 	install -Dm755 "$pkgname" "$pkgdir/usr/bin"
 	install -Dm644 "$pkgname.1.gz" "$pkgdir/usr/share/man/man1"
-	install -Dm644 "config/astronaut.conf" "$pkgdir/usr/share/astronaut"
-	install -Dm644 "config/style.conf" "$pkgdir/usr/share/astronaut"
+	install -Dm644 "config/astronaut.conf" "$pkgdir/usr/local/share/astronaut"
+	install -Dm644 "config/style.conf" "$pkgdir/usr/local/share/astronaut"
 }
 
 sha512sums="
