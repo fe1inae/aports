@@ -1,0 +1,39 @@
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=astronaut
+pkgver=0.1.0
+_commit=c706a2f83b3f41e73448124953d78ddbac34dd77
+pkgrel=0
+pkgdesc="Static git gemini viewer written in golang."
+url="https://git.sr.ht/~kornellapacz/gmnigit"
+license="MIT"
+arch="all"
+makedepends="go scdoc"
+subpackages="$pkgname-doc"
+source="$pkgname-$pkgver.tar.gz::https://git.sr.ht/~adnano/astronaut/archive/$_commit.tar.gz"
+builddir="$srcdir/$pkgname-$_commit"
+options="chmod-clean net"
+
+export GOPATH="$srcdir"
+export GOCACHE="$srcdir"
+export GOTMPDIR="$srcdir"
+
+build() {
+    make
+    gzip "$pkgname.1"
+}
+
+check() {
+	go test .
+}
+
+package() {
+	mkdir -p "$pkgdir/usr/bin"
+	mkdir -p "$pkgdir/usr/share/man/man1"
+
+	install -Dm755 "$pkgname" "$pkgdir/usr/bin"
+	install -Dm644 "$pkgname.1.gz" "$pkgdir/usr/share/man/man1"
+}
+
+sha512sums="
+95c852c2840ad541a9e36d54af232126afb704b01f109144b30ba79bf4c17817ef4590cfba6ce3a80f0195fc1b24eec88ad0b1a445039b1ec295899954cd253d  astronaut-0.1.0.tar.gz
+"

@@ -6,9 +6,8 @@ SRC=               \
 	main/nq        \
 	main/rwc       \
 	main/xe        \
-	main/gmnigit   \
 	main/kineto    \
-	main/telescope
+	main/astronaut
 
 DIR:=$(PWD)/apk
 
