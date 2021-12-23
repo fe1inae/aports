@@ -29,9 +29,13 @@ check() {
 package() {
 	mkdir -p "$pkgdir/usr/bin"
 	mkdir -p "$pkgdir/usr/share/man/man1"
+	mkdir -p "$pkgdir/usr/share/astronaut"
+	mkdir -p "$pkgdir/usr/share/man/man1"
 
 	install -Dm755 "$pkgname" "$pkgdir/usr/bin"
 	install -Dm644 "$pkgname.1.gz" "$pkgdir/usr/share/man/man1"
+	install -Dm644 "config/astronaut.conf" "$pkgdir/usr/share/astronaut"
+	install -Dm644 "config/style.conf" "$pkgdir/usr/share/astronaut"
 }
 
 sha512sums="
