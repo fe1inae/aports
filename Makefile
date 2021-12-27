@@ -2,6 +2,7 @@
 # ---------
 
 SRC=               \
+	main/diagon \
 	main/lr        \
 	main/nq        \
 	main/rwc       \

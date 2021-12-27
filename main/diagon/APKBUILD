@@ -1,0 +1,33 @@
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=diagon
+pkgver=1.0.127
+pkgrel=0
+pkgdesc="Interactive ASCII art diagram generators"
+url="https://github.com/ArthurSonzogni/Diagon/"
+arch="all"
+license="MIT"
+makedepends="util-linux-dev cmake boost-dev boost1.77-graph openjdk17"
+source="Diagon-$pkgver.tar.gz::https://github.com/ArthurSonzogni/Diagon/archive/refs/tags/v$pkgver.tar.gz"
+builddir="$srcdir/Diagon-$pkgver"
+options="net"
+
+build() {
+    sh tools/download_and_patch.sh
+    mkdir -p build
+    cd build
+	cmake .. -DCMAKE_BUILD_TYPE=Release
+	make -j8
+}
+
+check() {
+    build/diagon -v
+}
+
+package() {
+	mkdir -p "$pkgdir/usr/bin"
+	install -Dm755 build/diagon "$pkgdir/usr/bin"
+}
+
+sha512sums="
+bb9ac0b981cf752034ad34b3f83b6290f05663c8048e4160afc8b56d9c7679fee5781847f859e7b4b131e5fca95893254931ac7ef770143f0a54c8246db45db7  Diagon-1.0.127.tar.gz
+"
