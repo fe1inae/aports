@@ -2,15 +2,16 @@
 # ---------
 
 SRC=               \
-	main/astronaut \
 	main/diagon    \
+	main/astronaut \
 	main/kineto    \
 	main/lr        \
 	main/nq        \
 	main/rwc       \
 	main/xe
 
-DIR:=$(PWD)/apk
+KEY=$(HOME)/.abuild/felinae@ulthar.cat-61c9223c.rsa
+DIR=$(HOME)/pkg/pub
 
 ARCH=x86_64
 
@@ -33,11 +34,7 @@ $(SRC): FRC
 # MISC
 # ----
 
-sync:
-	git pull
-	$(MAKE)
-
-.PHONY: all sync FRC
+.PHONY: all FRC
 
 FRC:
 
