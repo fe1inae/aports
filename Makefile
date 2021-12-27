@@ -2,13 +2,13 @@
 # ---------
 
 SRC=               \
-	main/diagon \
+	main/astronaut \
+	main/diagon    \
+	main/kineto    \
 	main/lr        \
 	main/nq        \
 	main/rwc       \
-	main/xe        \
-	main/kineto    \
-	main/astronaut
+	main/xe
 
 DIR:=$(PWD)/apk
 
