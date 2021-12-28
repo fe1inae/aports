@@ -19,6 +19,9 @@ build() {
 }
 
 package() {
+    mkdir -p "$pkgdir/usr/share/fonts/misc"
+    mkdir -p "$pkgdir/usr/share/fonts/truetype"
+
 	for file in fontfiles/*.pcf.gz; do
 		install -Dm644 "$file" "$pkgdir/usr/share/fonts/misc"
 	done

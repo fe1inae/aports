@@ -2,12 +2,13 @@
 # ---------
 
 SRC=               \
-	main/diagon    \
 	main/astronaut \
+	main/diagon    \
 	main/kineto    \
 	main/lr        \
 	main/nq        \
 	main/rwc       \
+	main/unscii    \
 	main/xe
 
 KEY=$(HOME)/.abuild/felinae@ulthar.cat-61c9223c.rsa
