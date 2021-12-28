@@ -1,0 +1,33 @@
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=unscii
+pkgver=0_git20210224
+_commit=257b4dfeb50651510fe8b9cf4f151a148a4490e4
+pkgrel=0
+pkgdesc="UNSCII, a Unicode bitmap font family inspired by classic computer systems."
+url="https://github.com/viznut/unscii"
+license="CC0"
+arch="noarch"
+makedepends=""
+source="$pkgname-$pkgver.tar.gz::https://github.com/viznut/unscii/archive/$_commit.tar.gz"
+builddir="$srcdir/$pkgname-$_commit"
+options="!check"
+
+build() {
+    for file in fontfiles/*.pcf; do
+        gzip "$file"
+    done
+}
+
+package() {
+	for file in fontfiles/*.pcf.gz; do
+		install -Dm644 "$file" "$pkgdir/usr/share/fonts/misc"
+	done
+
+	for file in fontfiles/*.ttf; do
+		install -Dm644 "$file" "$pkgdir/usr/share/fonts/truetype"
+	done
+}
+
+sha512sums="
+8046c0eba9994ae8ee9e198d6a895a8778b55a27b36597920b5b120265f8dbec0f71aab924e959a956c8c464663b4796731a06933abb6753501327d0f1b99471  unscii-0_git20210224.tar.gz
+"
