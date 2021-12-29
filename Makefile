@@ -9,7 +9,8 @@ SRC=               \
 	main/nq        \
 	main/rwc       \
 	main/unscii    \
-	main/xe
+	main/vim       \
+	main/xe        
 
 KEY=$(HOME)/.abuild/felinae@ulthar.cat-61c9223c.rsa
 DIR=$(HOME)/pkg/pub
