@@ -4,6 +4,7 @@
 SRC=               \
 	main/astronaut \
 	main/diagon    \
+	main/didder    \
 	main/kineto    \
 	main/lr        \
 	main/nq        \

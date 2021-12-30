@@ -15,7 +15,7 @@ builddir="$srcdir/vim-$pkgver"
 options="!check"  # some tests are failing
 
 build() {
-	./configure                           \
+	./configure \
 		--build=$CBUILD                   \
 		--disable-acl                     \
 		--disable-arabic                  \
@@ -30,8 +30,8 @@ build() {
 		--disable-netbeans                \
 		--disable-nls                     \
 		--disable-rightleft               \
-		--disable-selinux	              \
-		--disable-smack	                  \
+		--disable-selinux                 \
+		--disable-smack                   \
 		--disable-sysmouse                \
 		--disable-xsmp                    \
 		--disable-xsmp-interact           \
