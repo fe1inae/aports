@@ -1,0 +1,25 @@
+# Maintainer: Elaina Thompson <felinae@u;thar.cat>
+pkgname=stagit-gemini
+pkgver=0_git20211231
+pkgrel=0
+_commit="master"
+pkgdesc="static git page generator"
+url="https://ulthar.cat/git/stagit-gemini"
+arch="all"
+license="MIT"
+makedepends="libgit2-dev"
+subpackages="$pkgname-doc"
+source="https://ulthar.cat/git/$pkgname/refs/$pkgname-$_commit.tar.gz"
+builddir="$srcdir/$pkgname-$_commit"
+options="!check"
+
+build() {
+	make
+}
+
+package() {
+	make PREFIX=/usr DESTDIR="$pkgdir" MANPREFIX=/usr/share/man install
+}
+sha512sums="
+eea6bf6e924d78e293808fdc018f88774d60d2108284dc077d0a31e55b4c9da1681fdb909558dd2bb1f59e9dca1c4f717da5012394bbfbce84da8fe3a9ba675d  stagit-gemini-master.tar.gz
+"

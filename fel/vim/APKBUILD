@@ -1,5 +1,5 @@
 # Maintainer: Elaina Thompson <felinae@ulthar.cat>
-pkgname=felvim
+pkgname=vim
 pkgver=8.2.3779
 pkgrel=0
 pkgdesc="Improved vi-style text editor"

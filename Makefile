@@ -1,21 +1,24 @@
+.POSIX:
+	
+.PHONY: all FRC
+
 # VARIABLES
 # ---------
 
-SRC=               \
-	main/astronaut \
-	main/diagon    \
-	main/didder    \
-	main/kineto    \
-	main/lr        \
-	main/nq        \
-	main/rwc       \
-	main/unscii    \
-	main/vim       \
-	main/xe        
+SRC=                   \
+	fel/stagit-gemini  \
+	fel/vim            \
+	main/astronaut     \
+	main/diagon        \
+	main/didder        \
+	main/kineto        \
+	main/lr            \
+	main/nq            \
+	main/rwc           \
+	main/unscii        \
+	main/xe
 
-KEY=$(HOME)/.abuild/felinae@ulthar.cat-61c9223c.rsa
 DIR=$(HOME)/pkg/pub
-
 ARCH=x86_64
 
 # RULES
@@ -25,19 +28,14 @@ all: $(SRC)
 
 $(SRC): FRC
 	@mkdir -p $(DIR)/$(@D)/$(ARCH)
-	@mkdir -p $(@)/main
-	@cp repos $(@)/main/.rootbld-repositories
-	@cd $(@)                  \
-		&& abuild sanitycheck \
-		&& abuild             \
-			-P $(DIR)         \
-			rootbld
-	@rm -rf $(@)/main
+	@mkdir -p $(@)/$(@D)
+	@cp repos $(@)/$(@D)/.rootbld-repositories
+	@cd $(@)                          \
+		&& abuild -P $(DIR) rootbld   \
+		&& abuild -P $(DIR) index
+	@rm -rf $(@)/$(@D)
 
 # MISC
 # ----
 
-.PHONY: all FRC
-
 FRC:
-
