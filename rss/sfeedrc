@@ -1,0 +1,11 @@
+sfeedpath="$PWD/rss"
+
+feeds() {
+	feed 'stagit-gemini' http://ulthar.cat/git/stagit-gemini/atom.xml
+	feed 'astronaut'     https://git.sr.ht/~adnano/astronaut/log/master/rss.xml
+	feed 'kineto'        https://git.sr.ht/~sircmpwn/kineto/log/master/rss.xml
+	feed 'Diagon'        https://github.com/ArthurSonzogni/Diagon/commits/master.atom
+	feed 'lr'            https://github.com/leahneukirchen/lr/commits/master.atom
+	feed 'didder'        https://github.com/makeworld-the-better-one/didder/commits/main.atom
+	feed 'unscii'        https://github.com/viznut/unscii/commits/main.atom
+}

@@ -1,6 +1,6 @@
 .POSIX:
 	
-.PHONY: all FRC
+.PHONY: all rss FRC
 
 # VARIABLES
 # ---------
@@ -34,6 +34,14 @@ $(SRC): FRC
 		&& abuild -P $(DIR) rootbld   \
 		&& abuild -P $(DIR) index
 	@rm -rf $(@)/$(@D)
+
+rss: rss/read.txt
+	@SFEED_URL_FILE=rss/read.txt sfeed_update rss/sfeedrc
+	@SFEED_URL_FILE=rss/read.txt sfeed_curses rss/raw/*
+
+rss/read.txt:
+	mkdir -p rss
+	touch rss/read.txt
 
 # MISC
 # ----

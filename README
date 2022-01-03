@@ -7,3 +7,6 @@
 * fel 	personal forks/hackery bullshit
 * main	software i use but isnt in official repos
 
+> make rss
+can check commits via rss, uses sfeed/sfeed_curses.
+
