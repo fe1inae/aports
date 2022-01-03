@@ -1,7 +1,7 @@
 # Maintainer: Elaina Thompson <felinae@ulthar.cat>
 pkgname=astronaut
-pkgver=0.1.0
-_commit=c706a2f83b3f41e73448124953d78ddbac34dd77
+pkgver=0_git20220102
+_commit=03db8ecfa8bee684a9bcd20ad5b158a69d4839a6
 pkgrel=0
 pkgdesc="Static git gemini viewer written in golang."
 url="https://git.sr.ht/~kornellapacz/gmnigit"
@@ -39,5 +39,5 @@ package() {
 }
 
 sha512sums="
-95c852c2840ad541a9e36d54af232126afb704b01f109144b30ba79bf4c17817ef4590cfba6ce3a80f0195fc1b24eec88ad0b1a445039b1ec295899954cd253d  astronaut-0.1.0.tar.gz
+6561e6b87d7527bdd6bc37ad9e70de76444068a12c6f177a3533eaa51a58ec86cd8ba21af98236c4798a4b9db10c14fde3f86fb5ab15bc5cc176fb1d5c20eda5  astronaut-0_git20220102.tar.gz
 "
