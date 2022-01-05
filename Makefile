@@ -32,7 +32,7 @@ $(SRC): FRC
 			&& abuild sanitycheck                                    \
 			&& apkbuild-shellcheck APKBUILD                          \
 			&& apkbuild-lint APKBUILD                                \
-			&& mkdir -p $(DIR)/$(@D)/$(ARCH)                         \
+			&& mkdir -p $(DIR)/$(notdir $(@D))/$(ARCH)               \
 			&& mkdir -p $(notdir $(@D))                              \
 			&& cp $(PWD)/repos $(notdir $(@D))/.rootbld-repositories \
 			&& abuild -P $(DIR) rootbld                              \
