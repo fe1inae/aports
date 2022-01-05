@@ -12,15 +12,15 @@ builddir="$srcdir/Diagon-$pkgver"
 options="net"
 
 build() {
-    sh tools/download_and_patch.sh
-    mkdir -p build
-    cd build
-	cmake .. -DCMAKE_BUILD_TYPE=Release
+	sh tools/download_and_patch.sh
+	mkdir -p build
+	cd build
+	cmake ..
 	make -j8
 }
 
 check() {
-    build/diagon -v
+	build/diagon -v
 }
 
 package() {

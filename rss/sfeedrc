@@ -1,4 +1,4 @@
-sfeedpath="$PWD/rss"
+sfeedpath="$PWD/rss/raw"
 
 feeds() {
 	feed 'stagit-gemini' http://ulthar.cat/git/stagit-gemini/atom.xml

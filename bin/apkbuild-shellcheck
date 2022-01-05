@@ -1,0 +1,18 @@
+#!/bin/sh 
+
+shellcheck -s ash  \
+	-e SC3043      \
+	-e SC3057      \
+	-e SC3060      \
+	-e SC2016      \
+	-e SC2086      \
+	-e SC2169      \
+	-e SC2155      \
+	-e SC2100      \
+	-e SC2209      \
+	-e SC2030      \
+	-e SC2031      \
+	-e SC1090      \
+	-xa "$(dirname $(realpath $0))/APKBUILD_SHIM"
+
+

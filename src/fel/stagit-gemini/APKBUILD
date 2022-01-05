@@ -1,6 +1,6 @@
 # Maintainer: Elaina Thompson <felinae@u;thar.cat>
 pkgname=stagit-gemini
-pkgver=0_git20211231
+pkgver=0_git20220103
 pkgrel=0
 _commit="master"
 pkgdesc="static git page generator"
@@ -9,7 +9,7 @@ arch="all"
 license="MIT"
 makedepends="libgit2-dev"
 subpackages="$pkgname-doc"
-source="https://ulthar.cat/git/$pkgname/refs/$pkgname-$_commit.tar.gz"
+source="https://ulthar.cat/git/stagit-gemini/refs/stagit-gemini-$_commit.tar.gz"
 builddir="$srcdir/$pkgname-$_commit"
 options="!check"
 

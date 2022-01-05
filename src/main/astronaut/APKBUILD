@@ -18,8 +18,8 @@ export GOCACHE="$srcdir"
 export GOTMPDIR="$srcdir"
 
 build() {
-    make
-    gzip "$pkgname.1"
+	make
+	gzip "$pkgname.1"
 }
 
 check() {

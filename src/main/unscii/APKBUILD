@@ -7,20 +7,19 @@ pkgdesc="UNSCII, a Unicode bitmap font family inspired by classic computer syste
 url="https://github.com/viznut/unscii"
 license="CC0"
 arch="noarch"
-makedepends=""
 source="$pkgname-$pkgver.tar.gz::https://github.com/viznut/unscii/archive/$_commit.tar.gz"
 builddir="$srcdir/$pkgname-$_commit"
 options="!check"
 
 build() {
-    for file in fontfiles/*.pcf; do
-        gzip "$file"
-    done
+	for file in fontfiles/*.pcf; do
+		gzip "$file"
+	done
 }
 
 package() {
-    mkdir -p "$pkgdir/usr/share/fonts/misc"
-    mkdir -p "$pkgdir/usr/share/fonts/truetype"
+	mkdir -p "$pkgdir/usr/share/fonts/misc"
+	mkdir -p "$pkgdir/usr/share/fonts/truetype"
 
 	for file in fontfiles/*.pcf.gz; do
 		install -Dm644 "$file" "$pkgdir/usr/share/fonts/misc"

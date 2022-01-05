@@ -8,7 +8,6 @@ arch="all"
 license="MIT"
 subpackages="$pkgname-doc"
 source="$pkgname-v$pkgver.tar.gz::https://github.com/leahneukirchen/lr/archive/refs/tags/v$pkgver.tar.gz"
-builddir="$srcdir/$pkgname-$pkgver"
 options="!check"
 
 build() {
