@@ -205,3 +205,7 @@ https://github.com/viznut/unscii/commit/a965767e3a594a8f760c2b5b003a224cd985aad9
 https://github.com/viznut/unscii/commit/052d89da1ee77b0db49f48d8d1b2937143c1a8cf
 https://github.com/viznut/unscii/commit/35da65408bbf8791fcfe8e1cd915a90e9d8ff5a8
 https://github.com/viznut/unscii/commit/d154990c3151a894330ef67ae9d7559e39428f90
+http://ulthar.cat/git/stagit-gemini/commit/6e7d0b3b3081e241c693cfda4bc27d5d986f5f5b.gmi
+http://ulthar.cat/git/stagit-gemini/commit/15dee313a5c3684a5d4c6a31d788d578fae63905.gmi
+http://ulthar.cat/git/stagit-gemini/commit/9540317f871b616663957ef8a5429d6135da4838.gmi
+https://git.sr.ht/~adnano/astronaut/commit/762f8a694bcb2af1c4fca0a67ea4a52e8ba7b159

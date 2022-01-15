@@ -1,0 +1,26 @@
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=parinfer-rust
+pkgver=0.4.3
+pkgrel=0
+pkgdesc="A Rust port of parinfer."
+url="https://github.com/eraserhd/parinfer-rust"
+arch="all"
+license="ISC"
+makedepends="rust cargo clang-libs"
+source="$pkgname-v$pkgver.tar.gz::https://github.com/eraserhd/parinfer-rust/archive/refs/tags/v$pkgver.tar.gz"
+options="net"
+
+build() {
+	cargo build --release --verbose
+}
+
+check() {
+	cargo test --all --release --verbose
+}
+
+package() {
+	install -Dm755 target/release/parinfer-rust "$pkgdir/usr/bin/parinfer-rust"
+}
+sha512sums="
+f2d16b64a71d3da5db2ce64567122d600917ae452b1d861ed24bb8c32d3be2b5bae8a98f59517405d3935db6d8093b076200148d67c4e1b85d11b879f13701fc  parinfer-rust-v0.4.3.tar.gz
+"
