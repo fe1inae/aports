@@ -20,6 +20,7 @@ SRC=\
 	src/main/parinfer-rust \
 	src/main/rwc           \
 	src/main/unscii        \
+	src/main/uxn           \
 	src/main/xe
 
 # RULES
