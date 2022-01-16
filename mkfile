@@ -3,20 +3,21 @@ MKSHELL=rc
 # VARIABLES
 # =========
 
-DIR  = $PUBLIC/apk
-ARCH = x86_64
+DIR       = $PUBLIC/apk
+ARCH      = x86_64
 
 # SOURCES
 # =======
 
-SRC=src/fel/stagit-gemini  \
+SRC=\
 	src/main/astronaut     \
 	src/main/diagon        \
-	src/main/parinfer-rust \
 	src/main/didder        \
+	src/main/es-shell      \
 	src/main/kineto        \
 	src/main/lr            \
 	src/main/nq            \
+	src/main/parinfer-rust \
 	src/main/rwc           \
 	src/main/unscii        \
 	src/main/xe
@@ -29,41 +30,39 @@ all:V: build
 test:QV:
 	path=($PWD/bin $path)
 	for (target in $SRC) {
-		cd $target
 		# sanity check
 		# ------------
+		APKBUILD=$PWD/$target/APKBUILD
 		abuild sanitycheck
-		apkbuild-shellcheck APKBUILD
-		apkbuild-lint APKBUILD
-		# cleanup
-		# -------
-		cd $PWD
+		apkbuild-shellcheck $APKBUILD
+		apkbuild-lint       $APKBUILD
 	}
 
 build:QV: test
 	path=($PWD/bin $path)
 	for (target in $SRC) {
-		cd $target
-		# make output dirs
+		# set variables
+		# -------------
+		middle    = `{printf $target | 9 sed 's;^[^/]*/(.*)/[^/]*$;\1;'}
+		APKBUILD  = $PWD/$target/APKBUILD
+		SRCDEST   = $PWD/$target/tmp
+		APORTSDIR = $PWD/src
+		# prepare
 		# ----------------
-		middle = `{printf $target | 9 sed 's;^[^/]*/(.*)/[^/]*$;\1;'}
-		tmp    = `{printf $middle | 9 sed 's;.*/([^/]*)$;\1;'}
+		# create dirs
 		mkdir -p $DIR/$middle/$ARCH
-		mkdir -p $tmp
+		# add/update repositories
+		cp -f /etc/apk/repositories $PWD/src/$middle/.rootbld-repositories
 		# build
 		# -----
-		cp $PWD/etc/repos $tmp/.rootbld-repositories
+		# run abuild
 		abuild -P $DIR rootbld
 		abuild -P $DIR index
-		# cleanup
-		# -------
-		rm -rf $tmp
-		cd $PWD
 	}
 
 rss:QV: rss/read.txt
 	SFEED_URL_FILE = rss/read.txt
-	sfeed_update rss/sfeedrc
+	sfeed_update rss/sfeedrc > /dev/null >[2=1] 
 	sfeed_curses rss/raw/*
 
 rss/read.txt:Q:

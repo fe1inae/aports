@@ -55,7 +55,7 @@ JOBS=
 MAKEFLAGS=
 CMAKE_CROSSOPTS=
 
-. ./APKBUILD
+. $APKBUILD
 
 : "$arch"
 : "$builddir"
