@@ -12,10 +12,6 @@ source="$pkgname-$pkgver.tar.gz::https://git.sr.ht/~rabbits/uxn/archive/$_commit
 builddir="$srcdir/$pkgname-$_commit"
 options="!check" # check included in build script
 
-export GOPATH="$srcdir"
-export GOCACHE="$srcdir"
-export GOTMPDIR="$srcdir"
-
 build() {
 	./build.sh --no-run
 }
