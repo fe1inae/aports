@@ -1,0 +1,27 @@
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=firth
+pkgver=0_git20210706
+_commit=3e163bc5bb0ed5c04af69ce19d899d990590a14a
+pkgrel=0
+pkgdesc="A postfix calculator with fractions, written in ANSI C."
+url="https://git.sr.ht/~rabbits/firth"
+license="MIT"
+arch="all"
+source="$pkgname-$pkgver.tar.gz::https://git.sr.ht/~rabbits/firth/archive/$_commit.tar.gz"
+builddir="$srcdir/$pkgname-$_commit"
+
+build() {
+	cc 1th.c -std=c89 -Os -DNDEBUG -g0 -s -Wall -Wno-unknown-pragmas -o firth
+}
+
+check() {
+	test "$(echo 1 1 add | ./firth)" -eq "2"
+}
+
+package() {
+	mkdir -p "$pkgdir/usr/bin"
+	install -Dm755 "firth" "$pkgdir/usr/bin"
+}
+sha512sums="
+3913c261fd1015df7150dd8d6cf77d65bdcc7632d7e7ff17cfce8226ad93d7671b3a12a615e1baf3f995a99c65c8392416e703e2081c6fe55895d875f9eba189  firth-0_git20210706.tar.gz
+"

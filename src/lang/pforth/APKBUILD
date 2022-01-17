@@ -1,0 +1,31 @@
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=pforth
+pkgver=0_git20211128
+_commit=1aa4eb4976630fdb6882bb3aacb97aa09f69571e
+pkgrel=0
+pkgdesc="Portable Forth in C"
+url="https://github.com/philburk/pforth"
+arch="all"
+license="0BSD"
+makedepends="cmake"
+source="$pkgname-$pkgver.tar.gz::https://github.com/philburk/pforth/archive/$_commit.tar.gz"
+builddir="$srcdir/$pkgname-$_commit"
+
+build() {
+	cd platforms/unix
+	make
+}
+
+check() {
+	cd platforms/unix
+	make test
+}
+
+package() {
+	mkdir -p "$pkgdir/usr/bin"
+	install -Dm755 platforms/unix/pforth_standalone "$pkgdir/usr/bin/pforth"
+}
+
+sha512sums="
+1fcabd843bcf9acecbbf70dcda057a2ed99f71305425c64dee87fcf9e95c8b01a7e10f7928074be206fc6cd2c054e7ee30aa4396377fb50eb38cb9f144c0e8f4  pforth-0_git20211128.tar.gz
+"

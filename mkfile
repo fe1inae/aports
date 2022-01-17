@@ -10,18 +10,21 @@ ARCH      = x86_64
 # =======
 
 SRC=\
+	src/font/unscii        \
 	src/main/astronaut     \
 	src/main/diagon        \
 	src/main/didder        \
 	src/main/es-shell      \
 	src/main/kineto        \
-	src/main/lr            \
-	src/main/nq            \
 	src/main/parinfer-rust \
-	src/main/rwc           \
-	src/main/unscii        \
+	src/lang/pforth        \
 	src/main/uxn           \
-	src/main/xe
+	src/smol/firth         \
+	src/smol/lr            \
+	src/smol/nq            \
+	src/smol/rwc           \
+	src/smol/seconth       \
+	src/smol/xe
 
 # RULES
 # =====

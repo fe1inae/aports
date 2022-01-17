@@ -1,0 +1,27 @@
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=seconth
+pkgver=0_git20201205
+_commit=e48d7649b47e27617e63929498ce0fc1eae76c28
+pkgrel=0
+pkgdesc="A simple seconth with plain-text events, written in ANSI C."
+url="https://git.sr.ht/~rabbits/seconth"
+license="MIT"
+arch="all"
+source="$pkgname-$pkgver.tar.gz::https://git.sr.ht/~rabbits/seconth/archive/$_commit.tar.gz"
+builddir="$srcdir/$pkgname-$_commit"
+
+build() {
+	cc 2th.c -std=c89 -Os -DNDEBUG -g0 -s -Wall -o seconth
+}
+
+check() {
+	./seconth calendar
+}
+
+package() {
+	mkdir -p "$pkgdir/usr/bin"
+	install -Dm755 "seconth" "$pkgdir/usr/bin"
+}
+sha512sums="
+13962d2322d756a2f98a3c77f6e63fe14a9f38e2c3f4870224d0e5e3e852c200ac4737904ba2c41d83b5e90b3deae474ffeb7be67630a6150fbaa54e37c7fac9  seconth-0_git20201205.tar.gz
+"
