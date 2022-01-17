@@ -1,12 +1,66 @@
-# aports
+[000] => APORTS
+________________________________________________________________________________
 
-!!! APKBUIDs may be out of date or break, please dont use directly !!!
+=> http://pkg.ulthar.cat/
 
-=> http://pkg.ulthar.cat
+personal alpine packages, forks, and ports.
 
-* fel 	personal forks/hackery bullshit
-* main	software i use but isnt in official repos
+```
+key=felinae@ulthar.cat-61c9223c.rsa.pub
+curl -s "https://pkg.ulthar.cat/$key" | doas dd of="/etc/apk/keys/$key"
+```
 
-> make rss
-can check commits via rss, uses sfeed/sfeed_curses.
+
+[100] DEPENDENCIES
+________________________________________________________________________________
+
+- 9base (rc sed mk)
+- abuild
+- abuild-rootbld
+- sfeed
+
+
+[200] OPTIONS
+________________________________________________________________________________
+
+[201] primary
+
+    mk                             build and update index for every package
+    mk test                                    check and lint the APKBUILDs
+    mk DIR=$val ...                                set the output directory
+
+[202] utilities
+
+    mk rss                                        update and open rss feeds
+
+
+[300] CATEGORIES
+________________________________________________________________________________
+
+fel
+ └── personal forks
+font
+ └── fonts or related media
+lang
+ └── programming languages
+main
+ └── miscellaneous
+
+
+[400] RSS
+________________________________________________________________________________
+
+includes a semi automatic rss watcher for (github sourcehut)^(master main). the
+script pulls rss feeds for commits, as to keep closer watch and simplify having
+to watch tags or commits for different packages.
+
+for unsupported rules, append `feed '$name' '$url'` into the `feeds` function,
+or add another rule.
+
+[500] LICENSE
+________________________________________________________________________________
+
+unless otherwise noted, the makefile and accompanying scripts are released into 
+the public domain (CC0).
+
 

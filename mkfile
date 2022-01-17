@@ -3,28 +3,28 @@ MKSHELL=rc
 # VARIABLES
 # =========
 
-DIR       = $PUBLIC/apk
-ARCH      = x86_64
+DIR  = $PUBLIC/apk
+ARCH = `{uname -m}
 
 # SOURCES
 # =======
 
 SRC=\
 	src/font/unscii        \
+	src/lang/pforth        \
+	src/lang/uxn           \
 	src/main/astronaut     \
 	src/main/diagon        \
 	src/main/didder        \
 	src/main/es-shell      \
+	src/main/firth         \
 	src/main/kineto        \
+	src/main/lr            \
+	src/main/nq            \
 	src/main/parinfer-rust \
-	src/lang/pforth        \
-	src/main/uxn           \
-	src/smol/firth         \
-	src/smol/lr            \
-	src/smol/nq            \
-	src/smol/rwc           \
-	src/smol/seconth       \
-	src/smol/xe
+	src/main/rwc           \
+	src/main/seconth       \
+	src/main/xe
 
 # RULES
 # =====
@@ -47,7 +47,8 @@ build:QV: test
 	for (target in $SRC) {
 		# set variables
 		# -------------
-		middle    = `{printf $target | 9 sed 's;^[^/]*/(.*)/[^/]*$;\1;'}
+		middle = `{printf $target | $PLAN9/bin/sed 's;^[^/]*/(.*)/[^/]*$;\1;'}
+		
 		APKBUILD  = $PWD/$target/APKBUILD
 		SRCDEST   = $PWD/$target/tmp
 		APORTSDIR = $PWD/src
