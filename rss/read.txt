@@ -391,3 +391,7 @@ https://github.com/philburk/pforth/commit/e476e087a64494c5965330887a248069c69e70
 https://github.com/philburk/pforth/commit/064f3eb027eef8fbfb59c43b40989ca8b83ca8f7
 https://github.com/philburk/pforth/commit/1f99f95d6a7eecc05cae8fb357f9b7bf564c2725
 https://github.com/philburk/pforth/commit/47a1084ddee779dc12d3ecc9ca4903adc250ee0d
+https://github.com/leahneukirchen/nq/commit/72da652ad6e7682bea6f54fbb27fbbba7d1f9f7d
+https://github.com/leahneukirchen/nq/commit/e50b606d352b11e59c5ccf22efe308b44853f320
+https://github.com/leahneukirchen/nq/commit/6f0d1e5f44aeadc9d81b1a7a38819f7c2cb85688
+https://github.com/leahneukirchen/nq/commit/9cf44c27876b3236de12fa60ff9d207f02328aa1
