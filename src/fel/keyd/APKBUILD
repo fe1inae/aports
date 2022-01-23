@@ -1,0 +1,40 @@
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=keyd
+pkgver=2.2.4
+pkgrel=0
+pkgdesc="A key remapping daemon for linux."
+url="https://github.com/rvaiya/keyd"
+arch="all"
+license="MIT"
+makedepends="eudev-dev linux-headers"
+subpackages="$pkgname-doc $pkgname-openrc"
+source="
+https://github.com/rvaiya/keyd/archive/refs/tags/$pkgver-beta.tar.gz
+$pkgname.initd
+ungit.patch
+$pkgname.post-install
+"
+builddir="$srcdir/$pkgname-$pkgver-beta"
+
+build() {
+	make
+}
+
+check() {
+	bin/keyd -v
+}
+
+package() {
+	make install DESTDIR="$pkgdir"
+	rm -rf "$pkgdir"/usr/lib/systemd
+
+	install -D -m755 "$srcdir"/$pkgname.initd "$pkgdir"/etc/init.d/$pkgname
+	echo uinput | install -D -m644 /dev/stdin "$pkgdir"/usr/lib/modules-load.d/$pkgname.conf
+}
+
+sha512sums="
+07d0f22b45262947f91465429fe3a7bf9c7b63d035fc99461f9b5725612d5a4d770e88540224c611e77b903a1893f5bfe92e04b0b5701a2a382eec3077e14c26  2.2.4-beta.tar.gz
+9e909d7d5468e717d8ca3c165bb3846f17f03bb7d1f19c424d7cc0e5ac282f1bad156c34c12b019a00100574e53b21d4245c028e13c662cad7048b3a956ede2c  keyd.initd
+9870a525534bab4a778e2cf8de3f86fa23773c24ea9bc4086be56f265456f93ac8dfee9f7ad507b0d475c0c38bfc9aa5f12a5d536bcf2425d6d10cf083442d61  ungit.patch
+b8e39f26522b405ac889e7874a824c61ddc07e26b80bdc68029329b6e96df8da8e7111835b680fc62d6ca38a31bf33e1e5c05ad262fc39fe26c6b91367c1e26d  keyd.post-install
+"

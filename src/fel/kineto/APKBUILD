@@ -2,14 +2,17 @@
 pkgname=kineto
 pkgver=0_git20211104
 _commit=857f8c97ebc5724f4c34931ba497425e7653894e
-pkgrel=1
+pkgrel=0
 pkgdesc=" HTTP to Gemini proxy designed to provide service for a single domain"
 url="https://git.sr.ht/~sircmpwn/kineto"
 license="MIT"
 arch="all"
 makedepends="go patch"
-source="$pkgname-$pkgver.tar.gz::https://git.sr.ht/~sircmpwn/kineto/archive/$_commit.tar.gz
-0001-close-paragraph.patch"
+source="
+$pkgname-$pkgver.tar.gz::https://git.sr.ht/~sircmpwn/kineto/archive/$_commit.tar.gz
+close-paragraph.patch
+rip-out-x.patch
+"
 builddir="$srcdir/$pkgname-$_commit"
 options="!check chmod-clean net"
 
@@ -27,5 +30,6 @@ package() {
 }
 sha512sums="
 dd79742be233dea3fb1f21a98cbb12d761760bad4ef469ca90bb991c115fbd4e8b69a620d589b3c3e08ff60035830465a68226159b58e6719c9a40e33756fea1  kineto-0_git20211104.tar.gz
-4faff99adbe253cd7389dfe75fe1803b1a6d458df4c3394b31c9b6b8415b34f1d85c7a3bae7c1d445a3b641d1753db4ba3e5f953bb82372954070e5e74c81dc1  0001-close-paragraph.patch
+4faff99adbe253cd7389dfe75fe1803b1a6d458df4c3394b31c9b6b8415b34f1d85c7a3bae7c1d445a3b641d1753db4ba3e5f953bb82372954070e5e74c81dc1  close-paragraph.patch
+2c79310d1c40a7e7e836f6e948056f0553c7d3e3bde9e6e892402ccc98f6d3cc022475d078770338d73921cb4c3373e4fd8ab60c461c80ee57b783a8560e6153  rip-out-x.patch
 "

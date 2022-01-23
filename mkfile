@@ -9,22 +9,22 @@ ARCH = `{uname -m}
 # SOURCES
 # =======
 
-SRC=\
+SRC=                       \
+	src/fel/keyd           \
+	src/fel/kineto         \
 	src/font/unscii        \
 	src/lang/pforth        \
 	src/lang/uxn           \
 	src/main/astronaut     \
 	src/main/diagon        \
 	src/main/didder        \
-	src/main/es-shell      \
 	src/main/firth         \
-	src/main/kineto        \
 	src/main/lr            \
 	src/main/nq            \
 	src/main/parinfer-rust \
 	src/main/rwc           \
 	src/main/seconth       \
-	src/main/xe
+	src/main/xe	
 
 # RULES
 # =====
@@ -61,7 +61,8 @@ build:QV: test
 		# build
 		# -----
 		# run abuild
-		abuild -P $DIR rootbld
+#		abuild -P $DIR rootbld
+		abuild -P $DIR
 		abuild -P $DIR index
 	}
 

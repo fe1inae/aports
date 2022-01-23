@@ -1,0 +1,35 @@
+--- a/Makefile
++++ b/Makefile
+@@ -8,10 +8,8 @@ LOG_FILE="/var/log/keyd.log"
+ CONFIG_DIR="/etc/keyd"
+ 
+ VERSION=2.2.4-beta
+-GIT_HASH=$(shell git describe --no-match --always --abbrev=40 --dirty)
+ 
+ CFLAGS+=-DVERSION=\"$(VERSION)\" \
+-	-DGIT_COMMIT_HASH=\"$(GIT_HASH)\" \
+ 	-DCONFIG_DIR=\"$(CONFIG_DIR)\" \
+ 	-DLOG_FILE=\"$(LOG_FILE)\" \
+ 	-DSOCKET=\"$(SOCKET)\" \
+diff --git a/src/keyd.c b/src/keyd.c
+index 9eb888c..f948cb1 100644
+--- a/src/keyd.c
++++ b/src/keyd.c
+@@ -852,7 +852,7 @@ int main(int argc, char *argv[])
+ 
+ 	if (argc > 1) {
+ 		if (!strcmp(argv[1], "-v") || !strcmp(argv[1], "--version")) {
+-			fprintf(stderr, "keyd version: %s (%s)\n", VERSION, GIT_COMMIT_HASH);
++			fprintf(stderr, "keyd version: %s\n", VERSION);
+ 			return 0;
+ 		} else if (!strcmp(argv[1], "-d") || !strcmp(argv[1], "--daemonize")) {
+ 			daemonize_flag++;
+@@ -936,7 +936,7 @@ int main(int argc, char *argv[])
+ 	signal(SIGTERM, exit);
+ 	atexit(cleanup);
+ 
+-	info("Starting keyd v%s (%s).", VERSION, GIT_COMMIT_HASH);
++	info("Starting keyd v%s.", VERSION);
+ 	read_config_dir(CONFIG_DIR);
+ 	vkbd = vkbd_init(VIRTUAL_KEYBOARD_NAME);
+ 
