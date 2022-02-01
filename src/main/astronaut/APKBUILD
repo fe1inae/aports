@@ -1,11 +1,11 @@
 # Maintainer: Elaina Thompson <felinae@ulthar.cat>
 pkgname=astronaut
-pkgver=0_git20220102
-_commit=03db8ecfa8bee684a9bcd20ad5b158a69d4839a6
+pkgver=0_git20211220
+_commit=762f8a694bcb2af1c4fca0a67ea4a52e8ba7b159
 pkgrel=0
-pkgdesc="Static git gemini viewer written in golang."
-url="https://git.sr.ht/~kornellapacz/gmnigit"
-license="MIT"
+pkgdesc="A Gemini browser for the terminal."
+url="https://sr.ht/~adnano/astronaut/"
+license="GPL-3"
 arch="all"
 makedepends="go scdoc"
 subpackages="$pkgname-doc"
@@ -13,11 +13,12 @@ source="$pkgname-$pkgver.tar.gz::https://git.sr.ht/~adnano/astronaut/archive/$_c
 builddir="$srcdir/$pkgname-$_commit"
 options="chmod-clean net"
 
-export GOPATH="$srcdir"
 export GOCACHE="$srcdir"
+export GOPATH="$srcdir"
 export GOTMPDIR="$srcdir"
 
 build() {
+	./configure --prefix="$pkgdir/usr"
 	make
 	gzip "$pkgname.1"
 }
@@ -27,15 +28,7 @@ check() {
 }
 
 package() {
-	mkdir -p "$pkgdir/usr/bin"
-	mkdir -p "$pkgdir/usr/share/man/man1"
-	mkdir -p "$pkgdir/usr/share/astronaut"
-	mkdir -p "$pkgdir/usr/share/man/man1"
-
-	install -Dm755 "$pkgname" "$pkgdir/usr/bin"
-	install -Dm644 "$pkgname.1.gz" "$pkgdir/usr/share/man/man1"
-	install -Dm644 "config/astronaut.conf" "$pkgdir/usr/share/astronaut"
-	install -Dm644 "config/style.conf" "$pkgdir/usr/share/astronaut"
+	make install
 }
 
 sha512sums="
