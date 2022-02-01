@@ -9,22 +9,7 @@ ARCH = `{uname -m}
 # SOURCES
 # =======
 
-SRC=                       \
-	src/fel/keyd           \
-	src/fel/kineto         \
-	src/font/unscii        \
-	src/lang/pforth        \
-	src/lang/uxn           \
-	src/main/astronaut     \
-	src/main/diagon        \
-	src/main/didder        \
-	src/main/firth         \
-	src/main/lr            \
-	src/main/nq            \
-	src/main/parinfer-rust \
-	src/main/rwc           \
-	src/main/seconth       \
-	src/main/xe	
+SRC=`{find src -name APKBUILD | sed 's;/[^/]*$;;'} 
 
 # RULES
 # =====
@@ -48,7 +33,6 @@ build:QV: test
 		# set variables
 		# -------------
 		middle = `{printf $target | $PLAN9/bin/sed 's;^[^/]*/(.*)/[^/]*$;\1;'}
-		
 		APKBUILD  = $PWD/$target/APKBUILD
 		SRCDEST   = $PWD/$target/tmp
 		APORTSDIR = $PWD/src
@@ -60,9 +44,7 @@ build:QV: test
 		cp -f /etc/apk/repositories $PWD/src/$middle/.rootbld-repositories
 		# build
 		# -----
-		# run abuild
-#		abuild -P $DIR rootbld
-		abuild -P $DIR
+		abuild -P $DIR rootbld
 		abuild -P $DIR index
 	}
 
