@@ -9,7 +9,7 @@ ARCH = `{uname -m}
 # SOURCES
 # =======
 
-SRC=`{find src -name APKBUILD | sed 's;/[^/]*$;;'} 
+SRC = `{find src -name APKBUILD | sed 's;/[^/]*$;;'} 
 
 # RULES
 # =====
@@ -37,7 +37,7 @@ build:QV: test
 		SRCDEST   = $PWD/$target/tmp
 		APORTSDIR = $PWD/src
 		# prepare
-		# ----------------
+		# -------
 		# create dirs
 		mkdir -p $DIR/$middle/$ARCH
 		# add/update repositories

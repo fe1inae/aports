@@ -37,15 +37,14 @@ ________________________________________________________________________________
 [300] CATEGORIES
 ________________________________________________________________________________
 
-fel
- └── personal forks
+core
+ └── essential packages
+extra
+ └── non-essential packages
 font
- └── fonts or related media
+ └── miscellaneous fonts
 lang
- └── programming languages
-main
- └── miscellaneous
-
+ └── miscellaneous languages
 
 [400] RSS
 ________________________________________________________________________________
@@ -60,7 +59,7 @@ or add another rule.
 [500] LICENSE
 ________________________________________________________________________________
 
-unless otherwise noted, the makefile and accompanying scripts are released into 
+unless otherwise noted, the makefile and accompanying scripts are released into
 the public domain (CC0).
 
 

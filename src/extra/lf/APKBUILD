@@ -1,0 +1,51 @@
+# Contributor: Leo <thinkabit.ukim@gmail.com>
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=lf
+pkgver=0_git20220213
+_commit=03de10ba691de2c35c7c50a14bdd529316a3a913
+pkgrel=0
+pkgdesc="Terminal filemanager written in Go with vim-style keybindings"
+url="https://github.com/gokcehan/lf"
+license="MIT"
+arch="all"
+makedepends="go"
+subpackages="
+	$pkgname-doc
+	$pkgname-bash-completion
+	$pkgname-zsh-completion
+	$pkgname-fish-completion
+"
+source="$pkgname-$_commit.tar.gz::https://github.com/gokcehan/lf/archive/$_commit.tar.gz"
+builddir="$srcdir/$pkgname-$_commit"
+options="chmod-clean net"
+
+export GOPATH="$srcdir"
+export GOCACHE="$srcdir"
+export GOTMPDIR="$srcdir"
+
+build() {
+	go build -v -o bin/$pkgname
+}
+
+check() {
+	go test ./...
+}
+
+package() {
+	install -Dm0755 bin/$pkgname -t "$pkgdir"/usr/bin
+
+	# Manpages
+	install -Dm0644 lf.1 "$pkgdir"/usr/share/man/man1/lf.1
+
+	# .desktop file for menus
+	install -Dm0644 lf.desktop -t "$pkgdir"/usr/share/applications
+
+	# Shell completions
+	install -Dm0644 etc/lf.bash "$pkgdir"/usr/share/bash-completion/completions/lf
+	install -Dm0644 etc/lf.zsh "$pkgdir"/usr/share/zsh/site-functions/_lf
+	install -Dm0644 etc/lf.fish -t "$pkgdir"/usr/share/fish/completions
+}
+
+sha512sums="
+c3a0e6cee58b02e079dcc64d42e5bf7edacec4e0d5b3375bc7f301f011ed348a0cc23e8a1ad6be3db291ce5351dbe31532bbad5e6c4108f39b8cab6a1ff8bced  lf-03de10ba691de2c35c7c50a14bdd529316a3a913.tar.gz
+"

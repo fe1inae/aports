@@ -1,0 +1,35 @@
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=tmsu
+pkgver=0_git20220210
+_commit=009d691c5ebbe376e5c0c972dbf3131bcb71d807
+pkgrel=0
+pkgdesc="TMSU lets you tags your files and then access them through a nifty virtual filesystem from any other application."
+url="https://github.com/oniony/TMSU"
+license="GPL-3.0"
+arch="all"
+makedepends="go"
+subpackages="$pkgname-doc $pkgname-zsh-completion"
+source="
+TMSU-$_commit.tar.gz::https://github.com/oniony/TMSU/archive/$_commit.tar.gz
+mount.tmsu
+"
+builddir="$srcdir/TMSU-$_commit"
+options="chmod-clean net !check" # tests fail
+
+export GOPATH="$srcdir"
+export GOCACHE="$srcdir"
+export GOTMPDIR="$srcdir"
+
+build() {
+	cp -f "$srcdir/mount.tmsu" "$builddir/misc/bin/mount.tmsu"
+	make compile
+}
+
+package() {
+	make DESTDIR="$pkgdir" install
+}
+
+sha512sums="
+fa0c95f17471445d370c4eefd427e35bf0560e6b11438be289b36a38966d3c16b15e9a5929510447851c942562f57be9a0ab69134ea214e733065f1be3f22f9c  TMSU-009d691c5ebbe376e5c0c972dbf3131bcb71d807.tar.gz
+631106d19b2000887e9e3a5f4f876317cdd7c03f6a877125c3c7786bc4434ea2da71fd7c13d3bbc10a880caf135ef382c426fefa590619782fbe716f831a986e  mount.tmsu
+"
