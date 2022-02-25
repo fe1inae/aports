@@ -43,6 +43,8 @@ extra
  └── non-essential packages
 font
  └── miscellaneous fonts
+fel
+ └── personal, with arbitrary hacks/patches
 lang
  └── miscellaneous languages
 

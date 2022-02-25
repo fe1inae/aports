@@ -1,0 +1,17 @@
+--- cgit-pink/cgit.c	2022-02-24 18:34:50.183765734 -0800
++++ cgit-fixed/cgit.c	2022-02-24 18:39:33.132633235 -0800
+@@ -1062,9 +1062,12 @@
+ 	/* If virtual-root isn't specified in cgitrc, lets pretend
+ 	 * that virtual-root equals SCRIPT_NAME, minus any possibly
+ 	 * trailing slashes.
++	 *
++	 * no! i do not want virtual root.
++	 *
++	 * if (!ctx.cfg.virtual_root && ctx.cfg.script_name)
++	 * 	ctx.cfg.virtual_root = ensure_end(ctx.cfg.script_name, '/');
+ 	 */
+-	if (!ctx.cfg.virtual_root && ctx.cfg.script_name)
+-		ctx.cfg.virtual_root = ensure_end(ctx.cfg.script_name, '/');
+ 
+ 	/* If no url parameter is specified on the querystring, lets
+ 	 * use PATH_INFO as url. This allows cgit to work with virtual
