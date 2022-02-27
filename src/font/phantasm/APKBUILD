@@ -1,0 +1,24 @@
+# Contributor: Elaina Thompson <felinae@ulthar.cat>
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=phantasm
+pkgver=0.0.3
+pkgrel=0
+pkgdesc="medium-sized bitmap font based on unifont"
+url="https://ulthar.cat/cgi-bin/cgit?url=phantasm/"
+arch="all"
+license="CC0"
+makedepends="curl pigz bdftopcf fontforge"
+source="http://ulthar.cat/cgi-bin/cgit?url=phantasm/snapshot/phantasm-$pkgver.tar.gz"
+options="!check net" # its a font
+
+build() {
+	make
+}
+
+package() {
+	make DESTDIR="$pkgdir" install
+}
+
+sha512sums="
+844b29c4f0f86f6f1cff0297996e83d383bdb6f57559ddfeace52650e31bc4a4f2aa5faac6bbf56f676aed7204cd901008b63c264cae1d2525c03a635d289ebf  phantasm-0.0.3.tar.gz
+"

@@ -2,7 +2,7 @@
 # Maintainer: Elaina Thompson <felinae@ulthar.cat>
 pkgname=cgit-pink
 pkgver=1.3.0
-pkgrel=4
+pkgrel=3
 _gitver=2.35.1
 pkgdesc="A fast webinterface for git"
 url="https://git.causal.agency/cgit-pink/"
@@ -13,7 +13,6 @@ subpackages="$pkgname-doc"
 source="
 	https://git.causal.agency/cgit-pink/snapshot/cgit-pink-$pkgver.tar.gz
 	https://www.kernel.org/pub/software/scm/git/git-$_gitver.tar.gz
-	no_virtual_root.patch
 "
 
 _makeopts="
@@ -53,5 +52,4 @@ package() {
 sha512sums="
 c901d747724f662b24e0ab4c41e815fb71fc36fc19ac0d39fadcad5ae1b4cdcd4f13d9549d227e4ddaacdfd207f7d0f413297158531f9cec6522710bcd00783e  cgit-pink-1.3.0.tar.gz
 a0618ce49c8ed1d7a2b00c1e274f542ad2f0bf17dca708e78a38414d6f06f258ce9712adb2ad610cae8dfc00525069dae134843f75fd4b028a809a52e9d95cd1  git-2.35.1.tar.gz
-36efeb48309e19d9e409dd0ee19dde76cbb47596c13fa9efd185063d28c980899a519c8742a046fcb4e7a9466aa75657f57ebbb31c17e3336daf36565c129530  no_virtual_root.patch
 "
