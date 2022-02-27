@@ -4,13 +4,21 @@ feeds() {
 	for f in $(find . -name "APKBUILD"); do
 		. "$f"
 		case "$url" in
-		https://github.com/*)
+		"https://github.com/"*)
 			feed "$pkgname" "$url/commits/master.atom"
 			feed "$pkgname" "$url/commits/main.atom"
 			;;
-		https://git.sr.ht/*)
+		"https://git.sr.ht/"*)
 			feed "$pkgname" "$url/log/master/rss.xml"
 			feed "$pkgname" "$url/log/main/rss.xml"
+			;;
+		"https://git.causal.agency/cgit-pink/"* \
+		|"https://ulthar.cat/cgi-bin/cgit?url="* \
+		)
+			feed "$pkgname" "$url/atom"
+			;;
+		*)
+			printf '[ warning ] atom feed for %s not found\n' "$url"
 			;;
 		esac
 	done

@@ -1,0 +1,30 @@
+# Contributor: Elaina Thompson <felinae@ulthar.cat>
+# Maintainer: Elaina Thompson <felinae@ulthar.cat>
+pkgname=jpm
+pkgver=0_git20220221
+_commit=ce14c833e6ea69f1515c59a1f3898dba419f0f4d
+pkgrel=0
+pkgdesc="ce14c833e6ea69f1515c59a1f3898dba419f0f4d"
+url="https://github.com/janet-lang/jpm"
+arch="all"
+license="MIT"
+depends="janet"
+makedepends="janet curl git"
+subpackages="$pkgname-doc"
+source="
+$pkgname-$_commit.tar.gz::https://github.com/janet-lang/jpm/archive/$_commit.tar.gz
+config.janet
+"
+builddir="$srcdir/$pkgname-$_commit"
+options="!check net"
+
+package() {
+	mkdir -p "$pkgdir/usr/lib/janet/.maifests"
+	mkdir -p "$pkgdir/usr/share/man/man1"
+	DESTDIR="$pkgdir" janet bootstrap.janet "$srcdir/config.janet"
+}
+
+sha512sums="
+b1ad9575eda24fe0ed5079efece55ff169541fee5f0623162d353a258907351d5cd96ed78f71a8088fdbaa2727620d12b11ecb58d933613bd630fb7856778f8e  jpm-ce14c833e6ea69f1515c59a1f3898dba419f0f4d.tar.gz
+49e78c294cbb12ae4d2affdb434c22d61f9671c6032fadcadb92bfd21c76b0b812082e1f0cd193dfa505b1ee916c9c4e0289304edd89231668213c4f9cdf235e  config.janet
+"
