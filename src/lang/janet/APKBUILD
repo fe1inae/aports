@@ -7,7 +7,7 @@ pkgdesc="Dynamic Lisp dialect and bytecode VM"
 url="https://janet-lang.org/"
 license="MIT"
 arch="all !riscv64" # FTBS riscv64
-subpackages="$pkgname-dev $pkgname-doc"
+subpackages="$pkgname-static $pkgname-dev $pkgname-doc"
 source="$pkgname-$pkgver.tar.gz::https://github.com/janet-lang/janet/archive/v$pkgver.tar.gz"
 
 prepare() {
@@ -22,9 +22,11 @@ prepare() {
 }
 
 build() {
-	make CFLAGS="$CFLAGS -Os -rdynamic" PREFIX=/usr
-	make CFLAGS="$CFLAGS -Os -rdynamic" PREFIX=/usr build/janet.pc
-	make CFLAGS="$CFLAGS -Os -rdynamic" PREFIX=/usr docs
+	export CFLAGS="${CFLAGS} -fPIC -rdynamic"
+	export PREFIX="/usr"
+	make
+	make build/janet.pc
+	make docs
 }
 
 check() {
@@ -32,22 +34,24 @@ check() {
 }
 
 package() {
-	install -Dt "$pkgdir"/usr/bin build/janet
-	install -Dm644 -t "$pkgdir"/usr/include/janet build/janet.h
+	install -Dm755 "build/janet"   -t "${pkgdir}/usr/bin"
+	install -Dm644 "build/janet.h" -t "${pkgdir}/usr/include/janet"
 
-	install -Dm755 build/libjanet.so "$pkgdir"/usr/lib/libjanet.so.$pkgver
-	ln -s libjanet.so.$pkgver "$pkgdir"/usr/lib/libjanet.so
-	ln -s libjanet.so.$pkgver "$pkgdir"/usr/lib/libjanet.so.${pkgver%.*.*}
+	install -Dm644 build/libjanet.so -t "${pkgdir}/usr/lib"
+	install -Dm644 build/libjanet.a  -t "${pkgdir}/usr/lib"
+	
+	ln -s libjanet.so "${pkgdir}/usr/lib/libjanet.so.${pkgver}"
+	ln -s libjanet.so "${pkgdir}/usr/lib/libjanet.so.${pkgver%.*.*}"
 
-	install -Dm644 build/janet.pc -t "$pkgdir"/usr/lib/pkgconfig/
+	install -Dm644 "build/janet.pc" -t "${pkgdir}/usr/lib/pkgconfig"
 
-	install -Dm644 -t "$pkgdir"/usr/share/man janet.1
+	install -Dm644 "janet.1" -t "${pkgdir}/usr/share/man/man1"
 
-	install -dm755 "$pkgdir"/usr/share/janet
-	cp -a examples "$pkgdir"/usr/share/janet
+	install -dm755     "${pkgdir}/usr/share/janet"
+	cp -Rp examples -t "${pkgdir}/usr/share/janet"
 
-	install -Dm644 build/doc.html "$pkgdir"/usr/share/doc/janet/doc.html
-	install -Dm644 -t "$pkgdir"/usr/lib/janet tools/.keep
+	install -Dm644 build/doc.html -t "${pkgdir}/usr/share/doc/janet"
+	install -Dm644 tools/.keep    -t  "${pkgdir}/usr/lib/janet"
 }
 
 sha512sums="

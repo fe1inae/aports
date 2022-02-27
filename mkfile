@@ -24,7 +24,6 @@ test:QV:
 		APKBUILD=$PWD/$target/APKBUILD
 		abuild sanitycheck
 		apkbuild-shellcheck $APKBUILD
-		apkbuild-lint       $APKBUILD
 	}
 
 build:QV: test

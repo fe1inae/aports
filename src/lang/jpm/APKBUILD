@@ -21,7 +21,7 @@ options="!check net"
 package() {
 	mkdir -p "$pkgdir/usr/lib/janet/.maifests"
 	mkdir -p "$pkgdir/usr/share/man/man1"
-	DESTDIR="$pkgdir" janet bootstrap.janet "$srcdir/config.janet"
+	DESTDIR="$pkgdir" janet bootstrap.janet "${srcdir}/config.janet"
 }
 
 sha512sums="
