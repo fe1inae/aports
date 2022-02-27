@@ -7,7 +7,7 @@ pkgdesc="Dynamic Lisp dialect and bytecode VM"
 url="https://janet-lang.org/"
 license="MIT"
 arch="all !riscv64" # FTBS riscv64
-subpackages="$pkgname-static $pkgname-dev $pkgname-doc"
+subpackages="$pkgname-dev $pkgname-doc"
 source="$pkgname-$pkgver.tar.gz::https://github.com/janet-lang/janet/archive/v$pkgver.tar.gz"
 
 prepare() {
@@ -22,9 +22,9 @@ prepare() {
 }
 
 build() {
-	make PREFIX=/usr
-	make PREFIX=/usr build/janet.pc
-	make PREFIX=/usr docs
+	make CFLAGS="$CFLAGS -Os -rdynamic" PREFIX=/usr
+	make CFLAGS="$CFLAGS -Os -rdynamic" PREFIX=/usr build/janet.pc
+	make CFLAGS="$CFLAGS -Os -rdynamic" PREFIX=/usr docs
 }
 
 check() {
@@ -35,11 +35,9 @@ package() {
 	install -Dt "$pkgdir"/usr/bin build/janet
 	install -Dm644 -t "$pkgdir"/usr/include/janet build/janet.h
 
-	install -Dm644 build/libjanet.so -t "$pkgdir"/usr/lib/libjanet.a
-
 	install -Dm755 build/libjanet.so "$pkgdir"/usr/lib/libjanet.so.$pkgver
 	ln -s libjanet.so.$pkgver "$pkgdir"/usr/lib/libjanet.so
-	ln -s libjanet.so.$pkgver "$pkgdir"/usr/lib/libjanet.${pkgver%.*.*}
+	ln -s libjanet.so.$pkgver "$pkgdir"/usr/lib/libjanet.so.${pkgver%.*.*}
 
 	install -Dm644 build/janet.pc -t "$pkgdir"/usr/lib/pkgconfig/
 
